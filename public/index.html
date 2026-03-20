@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraStore | Premium Products</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">AuraStore</div>
+        <p class="subtitle">Discover the extraordinary</p>
+        <button id="openAddModalBtn" class="add-product-btn">+ Add Product</button>
+    </header>
+
+    <main class="container">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar sidebar-panel">
+            <h2>Filters</h2>
+            
+            <div class="filter-group">
+                <label for="category">Category</label>
+                <div class="custom-select">
+                    <select id="category">
+                        <option value="All">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Home">Home</option>
+                        <option value="Fitness">Fitness</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label>Price Range</label>
+                <div class="price-inputs">
+                    <input type="number" id="minPrice" placeholder="Min $" min="0">
+                    <span class="separator">-</span>
+                    <input type="number" id="maxPrice" placeholder="Max $" min="0">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label for="sort">Sort By</label>
+                <div class="custom-select">
+                    <select id="sort">
+                        <option value="default">Featured</option>
+                        <option value="asc">Price: Low to High</option>
+                        <option value="desc">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="resetFilters" class="btn-primary">Reset Filters</button>
+        </aside>
+
+        <!-- Product Grid Layout -->
+        <section class="products-section">
+            <div class="products-header">
+                <h1 class="section-title">Collections</h1>
+                <span id="productCount" class="product-count">0 items</span>
+            </div>
+            
+            <div id="loader" class="loader-container">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="productsGrid" class="products-grid">
+                <!-- Product cards injected by JS -->
+            </div>
+            
+            <div id="emptyState" class="empty-state hidden">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3>No products found</h3>
+                <p>Try adjusting your filters to find what you're looking for.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal-overlay hidden">
+        <div class="modal-content standard-panel">
+            <div class="modal-header">
+                <h2>Add New Product</h2>
+                <button id="closeAddModalBtn" class="close-btn">&times;</button>
+            </div>
+            
+            <form id="addProductForm" class="add-product-form">
+                <div class="form-group">
+                    <label for="newProductName">Product Name</label>
+                    <input type="text" id="newProductName" required placeholder="e.g. Wireless Mouse">
+                </div>
+                
+                <div class="form-group">
+                    <label for="newProductPrice">Price ($)</label>
+                    <input type="number" id="newProductPrice" required step="0.01" min="0" placeholder="0.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="newProductCategory">Category</label>
+                    <div class="custom-select">
+                        <select id="newProductCategory" required>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Home">Home</option>
+                            <option value="Fitness">Fitness</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newProductImage">Image</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="newProductImage" accept="image/*" required>
+                        <p class="help-text">Select an image file to upload</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitProductBtn">Add Product</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
